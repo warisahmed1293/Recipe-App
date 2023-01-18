@@ -39,9 +39,9 @@ export default function MyTabs() {
             tabBarShowLabel: false,
             tabBarStyle: {
                 position: 'absolute',
-                elevation: 0,
                 backgroundColor: 'white',
-                height: 80,
+                height: 70,
+                ...styles.shadow
             }
         }}>
             <Tab.Screen name="Home" component={Home} options={{
@@ -86,12 +86,12 @@ const styles = StyleSheet.create({
     shadow: {
         shadowColor: "#000",
         shadowOffset: {
-            width: 0,
-            height: 2,
+            width: 5,
+            height: 10,
         },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+        shadowOpacity: 0.32,
+        shadowRadius: 5.46,
 
-        elevation: 5,
+        elevation: 9,
     }
 })

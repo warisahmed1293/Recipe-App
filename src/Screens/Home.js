@@ -10,6 +10,8 @@ import { TouchableOpacity } from 'react-native'
 import FilterBtn from '../Components/FilterBtn'
 import RecipeCard from '../Components/RecipeCard'
 import { recipeData } from '../Config/RecipeData'
+import NewRecipe from '../Components/NewRecipe'
+import { newRecipeData } from '../Config/NewRecipeData'
 
 
 const Home = (props) => {
@@ -20,7 +22,7 @@ const Home = (props) => {
     }
     return (
         <>
-            <View>
+            <View style={{ backgroundColor: 'white', height: '100%' }}>
                 <View style={{ marginLeft: 30, marginTop: 15 }}>
                     <Text style={{ fontSize: 28, fontWeight: '700', color: 'black' }}>Hello User</Text>
                     <Text style={{ fontSize: 16, color: 'grey', marginVertical: 0, width: 300 }}>What are you cooking today?</Text>
@@ -28,7 +30,7 @@ const Home = (props) => {
                 <View>
                     <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 15 }}>
                         <Input w={{
-                            base: "70%",
+                            base: "75%",
                             md: "25%"
                         }} InputLeftElement={<Ionicons size={25} name='search' style={{ left: 8 }} />} placeholder="Name" />
                         <TouchableOpacity onPress={handleChangeBtn} style={{ width: 50, height: 50, backgroundColor: '#129575', borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginLeft: 15 }}>
@@ -51,16 +53,27 @@ const Home = (props) => {
                     >
                         {
                             recipeData.map((item, key) => (
-                                <View style={{ marginTop: 70, marginLeft: 15 }}>
-                                    <RecipeCard name={item.recipeName} rating={item.rating} uri={item.uri} time={item.time} key={key} />
+                                <View style={{ marginTop: 60, marginHorizontal: 10, marginBottom: 30 }} key={key}>
+                                    <RecipeCard name={item.recipeName} rating={item.rating} uri={item.uri} time={item.time} />
                                 </View>
                             ))
                         }
                     </ScrollView>
                 </View>
                 <View>
-                    <Text style={{ fontSize: 28, fontWeight: '700', color: 'black', marginLeft: 30, marginTop: 20 }}>New Recipes</Text>
-
+                    <Text style={{ fontSize: 28, fontWeight: '700', color: 'black', marginLeft: 30, }}>New Recipes</Text>
+                    <ScrollView
+                        showsHorizontalScrollIndicator={false}
+                        horizontal={true}
+                    >
+                        {
+                            newRecipeData.map((item, key) => (
+                                <View style={{ marginTop: 10, marginBottom: 20 }} key={key}>
+                                    <NewRecipe recipName={item.nameRecipe} userName={item.chefName} mainImage={item.image} userPic={item.userProfile} time={item.time} />
+                                </View>
+                            ))
+                        }
+                    </ScrollView>
                 </View>
             </View >
 

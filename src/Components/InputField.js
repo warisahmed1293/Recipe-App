@@ -13,7 +13,7 @@ export default InputField
 
 const styles = StyleSheet.create({
     inputField: {
-        width: 315,
+        width: 350,
         height: 55,
         borderRadius: 10,
         borderWidth: 1.5,

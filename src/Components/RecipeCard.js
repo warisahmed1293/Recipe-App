@@ -1,18 +1,24 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 const RecipeCard = (props) => {
+    const [favourite, setFavourite] = useState(false)
+
+    const handleChangeBookmark = () => {
+        setFavourite(!favourite)
+    }
     return (
         <>
             <View>
-                <View style={{
-                    backgroundColor: '#dedede',
+                <TouchableOpacity style={{
+                    backgroundColor: '#ffff',
                     width: 150,
                     height: 180,
                     borderRadius: 20,
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    ...styles.shadow
                 }}>
                     <View style={{ position: 'absolute', top: -60 }}>
                         <Image source={props.uri} />
@@ -29,12 +35,16 @@ const RecipeCard = (props) => {
                             <Text style={{ fontSize: 16 }}>Time</Text>
                             <Text style={{ fontWeight: '800' }}>{props.time}</Text>
                         </View>
-                        <TouchableOpacity>
-                            <Ionicons size={25} name='bookmark-outline' color={'#129575'} />
+                        <TouchableOpacity onPress={handleChangeBookmark}>
+                            {
+                                favourite ?
+                                    <Ionicons size={25} name='bookmark' color={'#129575'} /> :
+                                    <Ionicons size={25} name='bookmark-outline' color={'#129575'} />
+                            }
                         </TouchableOpacity>
                     </View>
 
-                </View>
+                </TouchableOpacity>
             </View>
         </>
     )
@@ -42,4 +52,16 @@ const RecipeCard = (props) => {
 
 export default RecipeCard
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    shadow: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.30,
+        shadowRadius: 4.65,
+
+        elevation: 8,
+    }
+})
